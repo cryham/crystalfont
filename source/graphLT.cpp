@@ -428,12 +428,12 @@ void CFgraphLT::graphLT()
 				format(s,S, "ofsG%4d", aofsG);		Write( x + w  , yp + 3*Fy );
 				format(s,S, "ofsC%4d", aofsC);		Write( x + w*2, yp + 3*Fy );
 				Fclr = ac * CLR( 0.5f, 0.7f, 0.9f, 1 );	
-				format(s,S, "r %3d", bAc[0] ); 		Write( x      , yp + 4*Fy );
+				format(s,S, "r %3d", bAc[2] ); 		Write( x      , yp + 4*Fy );
 				format(s,S, "g %3d", bAc[1] );	 	Write( x + w  , yp + 4*Fy );
-				format(s,S, "b %3d", bAc[2] );	 	Write( x + w*2, yp + 4*Fy );
-				format(s,S, "R %3d", bAd[0] );	 	Write( x      , yp + 5*Fy );
+				format(s,S, "b %3d", bAc[0] );	 	Write( x + w*2, yp + 4*Fy );
+				format(s,S, "R %3d", bAd[2] );	 	Write( x      , yp + 5*Fy );
 				format(s,S, "G %3d", bAd[1] );	 	Write( x + w  , yp + 5*Fy );
-				format(s,S, "B %3d", bAd[2] );		Write( x + w*2, yp + 5*Fy );
+				format(s,S, "B %3d", bAd[0] );		Write( x + w*2, yp + 5*Fy );
 			}
 			break;	
 			
@@ -443,31 +443,32 @@ void CFgraphLT::graphLT()
 				anim( ac, 0 );
 				Clear( xp, yp, px, py,  ac*bckT[4].t );
 				Fclr = ac * bckT[4].f[1];
-				float c0 = ( cfp > 0 ) ? 1.f : 0.8f;
+				float c0 = (cfp == 1) ? 1.f : 0.6f;
 
 				x = xp + 10;
-				scpy(s, "Number:" );	Write( x, yp + 1*Fy );
-				scpy(s, "Format:" );	Write( x, yp + 2*Fy );	
+				scpy(s, "Image" );	Write( x, yp + 1*Fy-8 );
+				scpy(s, "Number:" );	Write( x, yp + 2*Fy );
+				scpy(s, "Format:" );	Write( x, yp + 3*Fy );	
 				x = xp + 170;
-				scpy(s, "Chars:" );	Write( x, yp + 1*Fy );
-
+				scpy(s, "Chars data" );	Write( x, yp + 1*Fy-8 );
+				scpy(s, "Type:" );		Write( x, yp + 2*Fy );
 				Fclr = ac * bckT[4].f[1]*c0;
-				scpy(s, "Data:" );   Write( x, yp + 2*Fy );
-				scpy(s, "Type:" );   Write( x, yp + 3*Fy );	
+				//scpy(s, "Data:" );   Write( x, yp + 2*Fy );
+				scpy(s, "Detail:" );   Write( x, yp + 3*Fy );	
 				Fclr = ac * bckT[4].f[0];
 				x = xp + 90 + savex*140;
 
-				Clear( x - 5, yp + ( savey + 1 )*Fy, x + ( savex == 0 ? 60 : 80 ), yp + ( savey + 2 )*Fy,  ac*bckT[4].q );
+				Clear( x - 5, yp + ( savey + 2 )*Fy, x + ( savex == 0 ? 60 : 120 ), yp + ( savey + 3 )*Fy,  ac*bckT[4].q );
 
 				x = xp + 90;
-				format(s,S, "%03d", fileNum );	 Write( x, yp + 1*Fy );
-				format(s,S, "%s", fmtExt[fmt] );  Write( x, yp + 2*Fy );
+				format(s,S, "%03d", fileNum );	 Write( x, yp + 2*Fy );
+				format(s,S, "%s", fmtExt[fmt] );  Write( x, yp + 3*Fy );
 				x = xp + 230;
-				scpy(s, Cfp[cfp] );	Write( x, yp + 1*Fy );
+				scpy(s, Cfp[cfp] );	Write( x, yp + 2*Fy );
 
 				Fclr = ac * bckT[4].f[0] * c0;
-				scpy(s, Cfd[cfd] );	Write( x, yp + 2*Fy );
-				scpy(s, Cft[cft] );	Write( x, yp + 3*Fy );
+				scpy(s, Cfd[cfd] );	Write( x, yp + 3*Fy );
+				//scpy(s, Cft[cft] );	Write( x, yp + 3*Fy );
 			}
 			break;	
 

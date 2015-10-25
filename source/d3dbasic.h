@@ -20,7 +20,7 @@ class Timer
 
 
 // temp string max size
-#define S  100
+#define S  300
 
 
 class D3Dbasic

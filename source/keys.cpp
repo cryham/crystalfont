@@ -400,8 +400,8 @@ bool CFkeys::KeyPress( WPARAM k )
 								case 3: amulF -= s_*0.05f;  updAll
 								case 4:	amulG -= s_*0.05f;  updAll
 								case 6:	 aofsF -= s_;  updAll    case 7:  aofsG -= s_;  updAll    case 8:  aofsC -= s_;   updAll
-								case 9:  SubB(bAc[0],s_) break;  case 10: SubB(bAc[1],s_) break;  case 11: SubB(bAc[2],s_) break;
-								case 12: SubB(bAd[0],s_) break;  case 13: SubB(bAd[1],s_) break;  case 14: SubB(bAd[2],s_) break;
+								case 9:  SubB(bAc[2],s_) break;  case 10: SubB(bAc[1],s_) break;  case 11: SubB(bAc[0],s_) break;
+								case 12: SubB(bAd[2],s_) break;  case 13: SubB(bAd[1],s_) break;  case 14: SubB(bAd[0],s_) break;
 							}	break;
 						case VK_PRIOR:
 							switch( alphy*alphX + alphx )
@@ -411,8 +411,8 @@ bool CFkeys::KeyPress( WPARAM k )
 								case 3: amulF += s_*0.05f;  updAll
 								case 4:	amulG += s_*0.05f;  updAll
 								case 6:	 aofsF += s_;  updAll    case 7:  aofsG += s_;  updAll    case 8:  aofsC += s_;   updAll
-								case 9:  AddB(bAc[0],s_) break;  case 10: AddB(bAc[1],s_) break;  case 11: AddB(bAc[2],s_) break;
-								case 12: AddB(bAd[0],s_) break;  case 13: AddB(bAd[1],s_) break;  case 14: AddB(bAd[2],s_) break;
+								case 9:  AddB(bAc[2],s_) break;  case 10: AddB(bAc[1],s_) break;  case 11: AddB(bAc[0],s_) break;
+								case 12: AddB(bAd[2],s_) break;  case 13: AddB(bAd[1],s_) break;  case 14: AddB(bAd[0],s_) break;
 							}	break;
 					}
 
@@ -440,7 +440,6 @@ bool CFkeys::KeyPress( WPARAM k )
 									switch( savey )
 									{	case 0:	if (cfp < CFp)  cfp++;	break;
 										case 1:	if (cfd < CFd)  cfd++;	break;
-										case 2:	if (cft < CFt)  cft++;	break;
 									}	break;
 							}	break;
 							
@@ -459,7 +458,6 @@ bool CFkeys::KeyPress( WPARAM k )
 									{
 										case 0:	if (cfp > 0)  cfp--;	break;
 										case 1:	if (cfd > 0)  cfd--;	break;
-										case 2:	if (cft > 0)  cft--;	break;
 									}	break;
 							}	break;
 					}

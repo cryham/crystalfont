@@ -53,7 +53,7 @@ bool CFfont::MakeFont()
 
 		/*Codes:*/
 		ForEachChar
-			if (h[n].ch )
+			if (h[n].ch)
 				h[n].s = h[n].ch;
 			else
 				h[n].s = n + z1;

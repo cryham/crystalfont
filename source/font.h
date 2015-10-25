@@ -9,7 +9,7 @@ const int
 	EdX = 38, EdY = 4,  // edit field size
 	MinTex = 128;   // min font texture size
 	
-const char ver[] = "4.45";	// program version
+const char ver[] = "4.46";	// program version
 
 
 // texture filters
@@ -27,16 +27,12 @@ const char fmtExt[nFormats + 1][5] =
 
 
 /*save options*/
-const int CFp = 1;
-const char Cfp[CFp + 1][10] =
-	{"none", "file .cf"};
+const int CFp = 2;
+const char Cfp[CFp + 1][16] =
+	{"none", "text file .cf", /*"xml",*/ "ogre .fontdef"};
 
-const int CFd = 1;
+const int CFd = 3;
 const char Cfd[CFd + 1][10] =
-	{"text", "xml-"};
-
-const int CFt = 3;
-const char Cft[CFt + 1][10] =
 	{"minimal", "extended", "abc", "full"};	
 
 
@@ -92,7 +88,7 @@ class CFfont : public CFclr
 		float atexFilR, atexFilH;
 
 	/*save options*/
-		int fileNum, fmt,  cfp, cfd, cft;
+		int fileNum, fmt,  cfp, cfd;
 	/*inf*/
 		float saveTime;
 		char saveInfo[90];

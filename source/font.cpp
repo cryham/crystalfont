@@ -5,25 +5,38 @@
 /*::.. .. .	.	 .				.	. ..: Save :.. .	.				.	 .	. .. ..::*/
 bool CFfont::SaveFont()
 {
-	char na[S], nb[S], nc[S];
+	char nf[S+1], na[S+1], nb[S+1], nc[S+1];
 	
 	// Get file name
-	format(s,S, "%03d ", fileNum );	// s + num
+	format(s,S, "%03d_", fileNum );	// s + num
 	scpy( na, s );
 	
 	if (bRect )
 	{
 		scat( na, "Rect" );
+		scpy( nf, na );
 	} else {
 		// s + fnt_name :len = 9
 		scpy(s, fontName );	s[9] = 0;
+
+		// replace space with _
+		for (int i=0; i < 9; ++i)  if (s[i]==' ')  s[i]='_';
 		scat( na, s );
+				
 		// s + size
-		format(s,S, " %2d", sy );	scat( na, s );
+		format(s,S, "_%2d", sy );
+		scat( na, s );
+
+		// full file name no ext
+		//format(nf,S, "%03d_%s_%2d", fileNum, s, sy );
+		scpy( nf, na );
 		
 		/*.cf > */
 		sadd( nc,  pathSave, na );
-		scat( nc, ".cf" );
+		if (cfp == 2)
+			scat( nc, ".fontdef" );
+		else
+			scat( nc, ".cf" );
 	}
 	// s + .ext
 	scat( na, "." );	scat( na, fmtExt[fmt] );
@@ -90,68 +103,97 @@ bool CFfont::SaveFont()
 	}
 	
 	/* CFclr file */
-	if (!bRect && cfp == 1)
-		switch (cfd)
-		{
-			case 0:  // text
-			{
-				ofstream f;	
-				f.open( nc );
-				if (f.fail())
-				{
-					scpy( saveInfo, "ERROR: cf file" );
-					return false;
-				}
-				
-				switch (cft)
-				{
-					case 0:  // minimal
-					{	f << "CrystalFont " << ver << "\n";
-						f << Sy << "\n";
-						f << z1 << " " << z2 << "\n";
-						ForEachChar
-							f << h[n].bx << " " << h[n].by << " " << h[n].wi << "\n";
-					}	break;
-
-					case 1:  // extended
-					{	f << "CrystalFont " << ver << "\n";
-						f << "chars_height = " << Sy << "\n";
-						f << "chars_from = " << z1 << "\n";
-						f << "chars_to = " << z2 << "\n";
-						ForEachChar
-							f << "x=" << h[n].bx << "\t y=" << h[n].by << "\t w=" << h[n].wi << "\n";
-					}	break;
-
-					case 2:  // abc
-					{	f << "CrystalFont " << ver << "\n";
-						f << "chars_height = " << Sy << "\n";
-						f << "chars_from = " << z1 << "\n";
-						f << "chars_to = " << z2 << "\n";
-						ForEachChar
-							f << "code=" << n+z1 << "\t x=" << h[n].bx << "\t y=" << h[n].by << "\t w=" << h[n].wi
-							  << "\t a=" << h[n].h[0] << "\t b=" << h[n].h[1] << "\t c=" << h[n].h[2] << "\n";
-					}	break;
-
-					case 3:  // full
-					{	f << "CrystalFont " << ver << "\n";
-						f << "chars_from = " << z1 << "\n";
-						f << "chars_to = " << z2 << "\n";
-						ForEachChar
-							f << "code=" << n+z1 << "\t posx=" << h[n].bx << "\t posy=" << h[n].by
-							  << "\t width=" << h[n].wi << "\t height=" << Sy
-							  << "\t a=" << h[n].h[0] << "\t b=" << h[n].h[1] << "\t c=" << h[n].h[2]
-							  << "\t grp=" << int(h[n].gr) << "\n";
-					}	break;
-				}
-				f.close();
-			}	break;
-			
-			case 1:  // xml ..
-			{
-			}
+	if (!bRect)
+	switch (cfp)  // type
+	{
+		case 0:  // none
 			break;
-		}
-		fileNum++;
+
+		case 1:  // .cf
+		{
+			ofstream f;	
+			f.open( nc );
+			if (f.fail())
+			{
+				scpy( saveInfo, "ERROR: chars file" );
+				return false;
+			}
+			
+			switch (cfd)  // detail
+			{
+				case 0:  // minimal
+				{	f << "CrystalFont " << ver << "\n";
+					f << Sy << "\n";
+					f << z1 << " " << z2 << "\n";
+					ForEachChar
+						f << h[n].bx << " " << h[n].by << " " << h[n].wi << "\n";
+				}	break;
+
+				case 1:  // extended
+				{	f << "CrystalFont " << ver << "\n";
+					f << "chars_height = " << Sy << "\n";
+					f << "chars_from = " << z1 << "\n";
+					f << "chars_to = " << z2 << "\n";
+					ForEachChar
+						f << "x=" << h[n].bx << "\t y=" << h[n].by << "\t w=" << h[n].wi << "\n";
+				}	break;
+
+				case 2:  // abc
+				{	f << "CrystalFont " << ver << "\n";
+					f << "chars_height = " << Sy << "\n";
+					f << "chars_from = " << z1 << "\n";
+					f << "chars_to = " << z2 << "\n";
+					ForEachChar
+						f << "code=" << n+z1 << "\t x=" << h[n].bx << "\t y=" << h[n].by << "\t w=" << h[n].wi
+						  << "\t a=" << h[n].h[0] << "\t b=" << h[n].h[1] << "\t c=" << h[n].h[2] << "\n";
+				}	break;
+
+				case 3:  // full
+				{	f << "CrystalFont " << ver << "\n";
+					f << "chars_from = " << z1 << "\n";
+					f << "chars_to = " << z2 << "\n";
+					ForEachChar
+						f << "code=" << n+z1 << "\t posx=" << h[n].bx << "\t posy=" << h[n].by
+						  << "\t width=" << h[n].wi << "\t height=" << Sy
+						  << "\t a=" << h[n].h[0] << "\t b=" << h[n].h[1] << "\t c=" << h[n].h[2]
+						  << "\t grp=" << int(h[n].gr) << "\n";
+				}	break;
+			}
+			f.close();
+		}	break;
+			
+		case 2:  // ogre
+		{
+			ofstream f;	
+			f.open( nc );
+			if (f.fail())
+			{
+				scpy( saveInfo, "ERROR: chars file" );
+				return false;
+			}
+			
+			f << nf << "\n";  // name same as img
+			f << "{" << "\n";
+			f << "	type	image" << "\n";
+			f << "	source	" << nf << "." << fmtExt[fmt] << "\n\n";  // img file
+			float fSy = Sy, fUx = Ux, fUy = Uy;
+			ForEachChar
+			{
+				//format(s,S, "glyph %c %9.7f %9.7f %9.7f %9.7f",
+				format(s,S, "glyph %c %f %f %f %f",
+					(char)h[n].s,
+					(float)(h[n].bx) / fUx,
+					(float)(h[n].by) / fUy,
+					(float)(h[n].bx + h[n].wi) / fUx,
+					(float)(h[n].by + fSy) / fUy );
+				f << "\t" << s << "\n";  // "glyph " << << x=" << h[n].bx << "\t y=" << h[n].by << "\t w=" << h[n].wi << "\n";
+			}
+			f << "}";
+
+			f.close();
+		}  break;
+	}
+	fileNum++;
 	
 	return true;
 }
@@ -324,7 +366,6 @@ void CFfont::optLoad()
 
 			fin( cfp, 0, CFp );
 			fin( cfd, 0, CFd );
-			fin( cft, 0, CFt );
 		gNewLine;
 			fin( edTL, 0, 1 );
 			fin( edT, 0, ntabT - 1 );
@@ -369,7 +410,6 @@ void CFfont::optSave()
 			
 			fout( cfp );
 			fout( cfd );
-			fout( cft );
 		fNewLine;
 			fout( edTL );
 			fout( edT );
@@ -411,7 +451,7 @@ CFfont::CFfont() :
 
 	texFilR(1), texFilH(0), atexFilR(1.f), atexFilH(1.f),
 
-	fileNum(0), fmt(0), cfp(0), cfd(0), cft(0),
+	fileNum(0), fmt(0), cfp(0), cfd(0),
 	saveTime(2.f),
 
 	ey(0), edIns(0), eqt(0.f),

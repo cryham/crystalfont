@@ -63,7 +63,7 @@ const int
 	fontX = 3, fontY = 4,	// 2 Font
 	glowX = 2, glowY = 4,	// 3 Glow
 	alphX = 3, alphY = 5,	// 4 Alpha
-	saveX = 2, saveY = 3,	// 5 Save
+	saveX = 2, saveY = 2,	// 5 Save
 	editX = 1, editY = 2;	// 6 Edit
 
 
