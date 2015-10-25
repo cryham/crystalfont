@@ -1,0 +1,33 @@
+  save
+101   number save
+2   format save
+1   cf chars
+0   cf data
+1   cf type
+  last
+0  edTL
+1  edT
+5    ch.pg
+0    hlp.pg
+0  iChar
+  texture
+1  Tex x!=y
+0  1line
+0  bRect
+256  rect sx
+256  rect sy
+  alpha
+3  bck
+104  r|
+76  g|
+28  b|clr1
+144  r|
+104  g|
+60  b|clr2
+  tabsT
+0  0|eL
+1  1|
+0  2|
+1  3|
+3  4|
+3  5|
