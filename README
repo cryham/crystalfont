@@ -1,0 +1,106 @@
+----------------------------------------------------------------------------------
+
+    Crystal Font  -  Program to create and color bitmap fonts.
+    Copyright (C) 2010  Crystal Hammer
+	project homepage:	http://code.google.com/p/crystalfont/
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	
+----------------------------------------------------------------------------------
+
+Description
+
+Program can be used to generate bitmap fonts. With it, you can:
+   (in [] is associated tab (middle) or list tab (right))
+
+1. Choose font from existing system TrueType fonts [Fonts].
+2. Use character range and change font's properties [Font]
+   or enter custom text [edit].
+3. Adjust every char properties [Chars] and
+   create fixed width groups (eg. for digits).
+   Making whole font fixed/variable width
+   can be changed in [Font]: fix/var.
+4. Add glow effect to chars (distance or additive type) [Glow].
+   Chars need extra space for glow to fit (and not to be truncated)
+   params ax,ay,bx,by adjust that [Font].
+5. Adjust generation of alpha channel [Alpha].
+6. Save texture (image) and text file with character data [save].
+   In CrystalFont\saved you will get saved texture,
+   and chars text file (.cf or .fontdef for OGRE).
+7. Save coloring schemes [.clr] and whole font projects [.fnt],
+   browse and load saved files.
+8. Modify coloring scheme by adding predefined channels
+   (simple, circle, line, point, star, diamond)
+   and modify their parameters (along with color) [Color].
+9. Coloring scheme can also be saved as texture for given sizes (rect).
+10. Zoom preview texture or see chosen character.
+
+----------------------------------------------------------------------------------
+
+Running
+
+Go to CrystalFont\bin and run CrystalFont.exe.
+Press F11 to show keyboard help, use left,right to change pages.
+Program doesn't support mouse, so every action comes from keyborard.
+Use existing .fnt files to load whole font settings,
+browse .clr files for existing coloring schemes, to apply for font/glow.
+
+Note: some texture bug still appears when changing many font projects,
+restarting program and loading font again resolves it.
+
+----------------------------------------------------------------------------------
+
+Using fonts
+
+Saved fonts can be used to draw any text in own applications,
+needed data is saved in .cf text file as follows:
+
+--- minimal version: ---
+CrystalFont 4.46	- first line, program version
+33					- font height (for every character the same)
+32 122				- characters range (ascii codes, ' ' to 'z')
+0 0 8 				- for each character from range:
+8 0 5 				-   x and y position in texture, and width
+...
+
+--- extended version: ---
+CrystalFont 4.46
+chars_height = 33
+chars_from = 32
+chars_to = 122
+x=0  y=0  w=8
+x=8  y=0  w=5
+...
+
+--- abc and full versions save additional character data like
+a,b,c widths etc.
+
+The program itself is using own created fonts, which can be seen
+in CrystalFont\data, fixed and variable width.
+
+The code is quite old, (started in 2006),
+all computations go on CPU, so for big font sizes (>120)
+and wide glow applyied it can take few secons to draw.
+
+----------------------------------------------------------------------------------
+
+Compiling
+
+To compile under Visual Studio 2008 use the included vcproj/sln file.
+Program is written in C++, it should be easy to use other compilers.
+You need to have DirectX SDK installed and
+properly set VC Directories to include and library SDK dirs
+(used March 2009 release, should do fine with others).
+
+----------------------------------------------------------------------------------
