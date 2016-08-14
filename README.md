@@ -25,6 +25,8 @@ Program can be used to generate bitmap fonts. With it, you can:
 
 For more details see included README file or [Wiki](https://github.com/cryham/crystalfont/wiki).
 
+Latest version is 4.46, link to [Downloads here](https://github.com/cryham/crystalfont/releases).
+
 ---
 
 ## Program Screenshot ##
