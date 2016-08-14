@@ -1,8 +1,8 @@
 ----------------------------------------------------------------------------------
 
     Crystal Font  -  Program to create and color bitmap fonts.
-    Copyright (C) 2010  Crystal Hammer
-	project homepage:	http://code.google.com/p/crystalfont/
+    Copyright (C) 2006-2010  Crystal Hammer
+	project homepage:	https://github.com/cryham/crystalfont/
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -59,6 +59,10 @@ browse .clr files for existing coloring schemes, to apply for font/glow.
 Note: some texture bug still appears when changing many font projects,
 restarting program and loading font again resolves it.
 
+The code is quite old (started in 2006),
+all computations go on CPU, so for big font sizes (>120)
+and wide glow applyied it can take few secons to draw.
+
 ----------------------------------------------------------------------------------
 
 Using fonts
@@ -88,10 +92,6 @@ a,b,c widths etc.
 
 The program itself is using own created fonts, which can be seen
 in CrystalFont\data, fixed and variable width.
-
-The code is quite old, (started in 2006),
-all computations go on CPU, so for big font sizes (>120)
-and wide glow applyied it can take few secons to draw.
 
 ----------------------------------------------------------------------------------
 

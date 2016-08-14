@@ -2,11 +2,11 @@
 
 ### Short demo of colored fonts and color schemes ###
 
-![http://crystalfont.googlecode.com/files/42preview.jpg](http://crystalfont.googlecode.com/files/42preview.jpg)
+![demo](https://raw.githubusercontent.com/cryham/crystalfont/master/screens/42preview.jpg)
 
 ### Bitmap fonts for writing texts in programs ###
 
-![http://crystalfont.googlecode.com/files/46fonts.jpg](http://crystalfont.googlecode.com/files/46fonts.jpg)
+![fonts](https://raw.githubusercontent.com/cryham/crystalfont/master/screens/46fonts.jpg)
 
 ---
 
@@ -23,16 +23,16 @@ Program can be used to generate bitmap fonts. With it, you can:
   1. Edit coloring schemes by adding predefined channels and modify their parameters (along with color).
   1. Zoom preview texture or see chosen character.
 
-For more details download and see included README file.
+For more details see included README file or [Wiki](https://github.com/cryham/crystalfont/wiki).
 
 ---
 
 ## Program Screenshot ##
 
-![http://crystalfont.googlecode.com/files/42program.jpg](http://crystalfont.googlecode.com/files/42program.jpg)
+![program](https://raw.githubusercontent.com/cryham/crystalfont/master/screens/42program.jpg)
 
 ---
 
 ## About ##
 
-This is my very old program from 2010, written in C++, WinAPI and DirectX calls.
+This is my very old program from 2006-2010, written in C++, WinAPI and Direct3D9 calls.
