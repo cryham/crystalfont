@@ -1,3 +1,14 @@
+
+## About ##
+
+This is my very old program from 2005-2010, written in C++, WinAPI and Direct3D9 calls.
+
+Latest version is 4.46, link to [Downloads here](https://github.com/cryham/crystalfont/releases).
+
+Quick info below. More details in [Wiki](https://github.com/cryham/crystalfont/wiki) or included README file.
+
+---
+
 ## Screenshots ##
 
 ### Short demo of colored fonts and color schemes ###
@@ -23,18 +34,8 @@ Program can be used to generate bitmap fonts. With it, you can:
   1. Edit coloring schemes by adding predefined channels and modify their parameters (along with color).
   1. Zoom preview texture or see chosen character.
 
-For more details see included README file or [Wiki](https://github.com/cryham/crystalfont/wiki).
-
-Latest version is 4.46, link to [Downloads here](https://github.com/cryham/crystalfont/releases).
-
 ---
 
 ## Program Screenshot ##
 
 ![program](https://raw.githubusercontent.com/cryham/crystalfont/master/screens/42program.jpg)
-
----
-
-## About ##
-
-This is my very old program from 2006-2010, written in C++, WinAPI and Direct3D9 calls.
