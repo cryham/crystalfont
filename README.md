@@ -13,7 +13,7 @@ Quick info below. More details in [Wiki](https://github.com/cryham/crystalfont/w
 
 ### Short demo of colored fonts and color schemes ###
 
-![demo](https://raw.githubusercontent.com/cryham/crystalfont/master/screens/42preview.jpg)
+![demo](https://raw.githubusercontent.com/cryham/crystalfont/master/screens/46preview.jpg)
 
 ### Bitmap fonts for writing texts in programs ###
 
